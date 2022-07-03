@@ -3,6 +3,7 @@ using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.Toolkit.HighPerformance;
 
@@ -32,6 +33,7 @@ namespace BCnEncoder.Shared
 			}
 		}
 
+#if NETSTANDARD2_0
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Memory2D<T> AsMemory2D<T>(this Memory<T> memory, int height, int width)
 		{
@@ -55,6 +57,31 @@ namespace BCnEncoder.Shared
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Span2D<T> AsSpan2D<T>(this Span<T> span, int height, int width)
+		{
+			return new Span2D<T>(span.ToArray(), height, width);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Span<T> AsSpan<T>(this T[,] array)
+		{
+			if (array is null)
+			{
+				return default;
+			}
+
+			if (array.IsCovariant())
+			{
+				throw new ArrayTypeMismatchException();
+			}
+
+			ref T r0 = ref array.DangerousGetReference();
+			int length = array.Length;
+
+			return CreateSpan(ref r0, length);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static ReadOnlyMemory2D<T> AsMemory2D<T>(this ReadOnlyMemory<T> memory, int height, int width)
 		{
 			return new ReadOnlyMemory2D<T>(memory.ToArray(), height, width);
@@ -69,5 +96,6 @@ namespace BCnEncoder.Shared
 		{
 			return br.BaseStream.Read(buffer);
 		}
+#endif
 	}
 }

@@ -1,9 +1,11 @@
+using System;
 using System.IO;
 using BCnEncoder.Decoder;
 using BCnEncoder.Encoder;
 using BCnEncoder.ImageSharp;
 using BCnEncoder.Shared;
 using BCnEncTests.Support;
+using Microsoft.Toolkit.HighPerformance;
 using SixLabors.ImageSharp.Processing;
 using Xunit;
 
