@@ -13,6 +13,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using Xunit;
 using Xunit.Abstractions;
+using MemoryExtensions = Microsoft.Toolkit.HighPerformance.MemoryExtensions;
 
 namespace BCnEncTests.Support
 {
@@ -182,7 +183,7 @@ namespace BCnEncTests.Support
 			encoder.OutputOptions.Format = format;
 
 			var fs = File.OpenWrite(filename);
-			encoder.EncodeToStreamHdr(image.pixels.AsMemory().AsMemory2D(image.height, image.width), fs);
+			encoder.EncodeToStreamHdr(MemoryExtensions.AsMemory2D(image.pixels.AsMemory(), image.height, image.width), fs);
 			fs.Close();
 
 			var rmse = DecodeKtxCheckRMSEHdr(filename, image);

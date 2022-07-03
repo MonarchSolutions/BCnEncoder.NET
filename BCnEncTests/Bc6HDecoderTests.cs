@@ -101,7 +101,7 @@ namespace BCnEncTests
 			var length = (int)ms.Position;
 
 			var bytes = ms.GetBuffer().AsSpan(0, length);
-			var halfs = MemoryMarshal.Cast<byte, Half>(bytes);
+			var halfs = MemoryMarshal.Cast<byte, BCnEncoder.Shared.Half>(bytes);
 			Assert.Equal(halfs.Length / 4, decoded.Length);
 
 			for (var i = 0; i < decoded.Length; i++)
