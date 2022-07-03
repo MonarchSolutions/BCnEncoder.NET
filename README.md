@@ -1,11 +1,16 @@
+[![MyGet](https://buildstats.info/myget/monarchsolutions/BCnEncoder.NetStd)](https://www.myget.org/feed/monarchsolutions/package/nuget/BCnEncoder.NetStd)
 [![Nuget](https://img.shields.io/nuget/v/BCnEncoder.Net)](https://www.nuget.org/packages/BCnEncoder.Net/)
 ![Tests](https://github.com/Nominom/BCnEncoder.NET/workflows/Tests/badge.svg)
 
 # BCnEncoder.NET
 A Cross-platform BCn / DXT encoding libary for .NET
 
+This fork provides a .NET Standard 2.0 compatible version (original version is for .NET Standard 2.1). It works on .NET Framework 4.8 🥳
+
+However, the performance is damaged.
+
 # What is it?
-BCnEncoder.NET is a library for compressing rgba images to different block-compressed formats. It has no native dependencies and is .NET Standard 2.1 compatible.
+BCnEncoder.NET is a library for compressing rgba images to different block-compressed formats. It has no native dependencies and is .NET Standard 2.0 compatible.
 
 Supported formats are:
  - Raw unsigned byte R, RG, RGB and RGBA formats
