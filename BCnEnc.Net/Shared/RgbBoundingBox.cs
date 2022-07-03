@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using MathF = System.Math;
 
 namespace BCnEncoder.Shared
 {
@@ -239,8 +240,8 @@ namespace BCnEncoder.Shared
 			logBlockMin += MathF.Min(logRefinedBlockMin - logBlockMin, logBlockMaxExt);
 			logBlockMax -= MathF.Min(logBlockMax - logRefinedBlockMax, logBlockMaxExt);
 
-			blockMin = MathF.Pow(2, logBlockMin) - 1.0f - offset;
-			blockMax = MathF.Pow(2, logBlockMax) - 1.0f - offset;
+			blockMin = (float) (MathF.Pow(2, logBlockMin) - 1.0f - offset);
+			blockMax = (float) (MathF.Pow(2, logBlockMax) - 1.0f - offset);
 		}
 
 		public static void CreateFloat(ReadOnlySpan<ColorRgbFloat> colors, out ColorRgbFloat min, out ColorRgbFloat max)

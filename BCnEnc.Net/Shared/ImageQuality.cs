@@ -1,4 +1,5 @@
 using System;
+using MathF = System.Math;
 
 namespace BCnEncoder.Shared
 {
@@ -31,7 +32,7 @@ namespace BCnEncoder.Shared
 				error /= original.Length * 3;
 			}
 
-			return 20 * MathF.Log10(1 / MathF.Sqrt(error));
+			return (float)(20 * MathF.Log10(1 / MathF.Sqrt(error)));
 		}
 
 		public static float CalculateLogRMSE(ReadOnlySpan<ColorRgbFloat> original, ReadOnlySpan<ColorRgbFloat> other)
@@ -40,7 +41,7 @@ namespace BCnEncoder.Shared
 			{
 				throw new ArgumentException("Both spans should be the same length");
 			}
-			float error = 0;
+			double error = 0;
 			for (var i = 0; i < original.Length; i++)
 			{
 				//var dr = MathF.Log(other[i].r + 1.0f) - MathF.Log(original[i].r + 1.0f);
@@ -55,7 +56,7 @@ namespace BCnEncoder.Shared
 				error += db * db;
 
 			}
-			return MathF.Sqrt(error / (3.0f * original.Length));
+			return (float)MathF.Sqrt(error / (3.0f * original.Length));
 		}
 
 		public static float PeakSignalToNoiseRatioLuminance(ReadOnlySpan<ColorRgba32> original, ReadOnlySpan<ColorRgba32> other, bool countAlpha = true) {
@@ -83,7 +84,7 @@ namespace BCnEncoder.Shared
 				error /= original.Length;
 			}
 
-			return 20 * MathF.Log10(1 / MathF.Sqrt(error));
+			return (float)(20 * MathF.Log10(1 / MathF.Sqrt(error)));
 		}
 	}
 }

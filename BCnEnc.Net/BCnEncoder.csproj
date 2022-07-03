@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -12,7 +12,7 @@
     <PackageLicenseExpression>MIT OR Unlicense</PackageLicenseExpression>
     <Copyright />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>2.1.0</Version>
+    <Version>2.1.1</Version>
     <Authors>Nominom</Authors>
     <Company />
     <Product>BCnEncoder.Net</Product>
@@ -27,7 +27,7 @@ Supported formats are:
     BC5 (RGTC2)
     BC6 (BPTC-FLOAT)
     BC7 (BPTC)</Description>
-    <PackageId>BCnEncoder.Net</PackageId>
+    <PackageId>BCnEncoder.NetStd</PackageId>
     <RepositoryUrl>https://github.com/Nominom/BCnEncoder.NET</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>BCn BC BC1 BC2 BC3 BC4 BC5 BC6 BC6H BC7 BPTC RGTC S3TC DXT1 DXT3 DXT5 ktx dds texture compression encoding decoding decompression image gpu</PackageTags>
@@ -35,6 +35,7 @@ Supported formats are:
     <PackageReleaseNotes>2.0.0 - Removed ImageSharp dependency, added async api methods, added ATC and BGRA support, added new raw api methods, improved dds file handling and fixed some bugs. See the github page for more information about 2.0.
 
 2.1.0 - BC6H Support</PackageReleaseNotes>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

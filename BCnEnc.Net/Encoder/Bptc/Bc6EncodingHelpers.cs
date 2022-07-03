@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
-using System.Text;
 using BCnEncoder.Shared;
+using MathF = System.Math;
 
 namespace BCnEncoder.Encoder.Bptc
 {
@@ -229,7 +225,7 @@ namespace BCnEncoder.Encoder.Bptc
 				indices[i] = (byte)FindClosestColorIndexInt(intPixel, palette, out var e);
 				error += e;
 			}
-			return MathF.Sqrt(error / (3 * 16));
+			return (float) MathF.Sqrt(error / (3 * 16));
 		}
 
 

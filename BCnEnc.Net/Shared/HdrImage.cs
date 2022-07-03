@@ -58,7 +58,7 @@ namespace BCnEncoder.Shared
 		}
 
 		// StreamReader class does not work. Have to use custom string reading.
-		private static string ReadFromStream(Stream stream)
+		private static unsafe string ReadFromStream(Stream stream)
 		{
 			var i = 0;
 			var buffer = new char[512];
@@ -73,7 +73,8 @@ namespace BCnEncoder.Shared
 				c = (char)b;
 				buffer[i++] = c;
 			} while (c != (char)10);
-			return new string(buffer.AsSpan().Slice(0, i)).Trim();
+			//return new string(buffer.AsSpan().Slice(0, i)).Trim();
+			return buffer.AsSpan().Slice(0, i).ToString().Trim();
 		}
 		
 		private static void WriteLineToStream(BinaryWriter br, string s)

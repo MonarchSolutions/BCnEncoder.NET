@@ -190,7 +190,8 @@ namespace BCnEncoder.Encoder.Bptc
 		public int i02, i12, i22, i32;
 		public int i03, i13, i23, i33;
 
-		public Span<int> AsSpan => MemoryMarshal.CreateSpan(ref i00, 16);
+		//public Span<int> AsSpan => MemoryMarshal.CreateSpan(ref i00, 16);
+		public Span<int> AsSpan => Compatibility.CreateSpan(ref i00, 16);
 
 		public int this[int x, int y]
 		{
@@ -278,7 +279,8 @@ namespace BCnEncoder.Encoder.Bptc
 		public byte i02, i12, i22, i32;
 		public byte i03, i13, i23, i33;
 
-		public Span<byte> AsSpan => MemoryMarshal.CreateSpan(ref i00, 16);
+		//public Span<byte> AsSpan => MemoryMarshal.CreateSpan(ref i00, 16);
+		public Span<byte> AsSpan => Compatibility.CreateSpan(ref i00, 16);
 
 		public byte this[int x, int y]
 		{

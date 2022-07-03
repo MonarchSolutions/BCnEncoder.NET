@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using MathF = System.Math;
 
 namespace BCnEncoder.Shared
 {
@@ -436,7 +437,7 @@ namespace BCnEncoder.Shared
 			var dr = Math.Sign(other.r) * MathF.Log(1 + MathF.Abs(other.r)) - Math.Sign(r) * MathF.Log(1 + MathF.Abs(r));
 			var dg = Math.Sign(other.g) * MathF.Log(1 + MathF.Abs(other.g)) - Math.Sign(g) * MathF.Log(1 + MathF.Abs(g));
 			var db = Math.Sign(other.b) * MathF.Log(1 + MathF.Abs(other.b)) - Math.Sign(b) * MathF.Log(1 + MathF.Abs(b));
-			return MathF.Sqrt((dr * dr) + (dg * dg) + (db * db));
+			return (float) MathF.Sqrt((dr * dr) + (dg * dg) + (db * db));
 		}
 
 		internal float CalcDist(ColorRgbFloat other)
@@ -444,7 +445,7 @@ namespace BCnEncoder.Shared
 			var dr = other.r - r;
 			var dg = other.g - g;
 			var db = other.b - b;
-			return MathF.Sqrt((dr * dr) + (dg * dg) + (db * db));
+			return (float) MathF.Sqrt((dr * dr) + (dg * dg) + (db * db));
 		}
 
 		internal void ClampToPositive()
@@ -577,7 +578,7 @@ namespace BCnEncoder.Shared
 			var dcb = (cb - other.cb) * (cb - other.cb);
 			var dcr = (cr - other.cr) * (cr - other.cr);
 
-			return MathF.Sqrt(dy + dcb + dcr);
+			return (float) MathF.Sqrt(dy + dcb + dcr);
 		}
 
 		public static ColorYCbCr operator +(ColorYCbCr left, ColorYCbCr right)
@@ -1111,7 +1112,7 @@ namespace BCnEncoder.Shared
 			var dcr = (cr - other.cr) * (cr - other.cr);
 			var da = (alpha - other.alpha) * (alpha - other.alpha) * aWeight;
 
-			return MathF.Sqrt(dy + dcb + dcr + da);
+			return (float) MathF.Sqrt(dy + dcb + dcr + da);
 		}
 
 		public static ColorYCbCrAlpha operator +(ColorYCbCrAlpha left, ColorYCbCrAlpha right)
@@ -1187,7 +1188,7 @@ namespace BCnEncoder.Shared
 
 		private static float PivotRgb(float n)
 		{
-			return (n > 0.04045f ? MathF.Pow((n + 0.055f) / 1.055f, 2.4f) : n / 12.92f) * 100;
+			return (float) ((n > 0.04045f ? MathF.Pow((n + 0.055f) / 1.055f, 2.4f) : n / 12.92f) * 100);
 		}
 	}
 
@@ -1241,8 +1242,9 @@ namespace BCnEncoder.Shared
 
 		private static float PivotXyz(float n)
 		{
-			var i = MathF.Cbrt(n);
-			return n > 0.008856f ? i : 7.787f * n + 16 / 116f;
+			//var i = MathF.Cbrt(n);
+			var i = System.Math.Pow(n, (1.0 / 3.0));
+			return (float) (n > 0.008856f ? i : 7.787f * n + 16 / 116f);
 		}
 	}
 

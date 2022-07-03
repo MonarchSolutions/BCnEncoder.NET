@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static System.Text.Encoding;
 
@@ -214,7 +215,7 @@ namespace BCnEncoder.Shared.ImageFiles
 			return (uint)(totalSize + paddingBytes);
 		}
 
-		public static KtxKeyValuePair ReadKeyValuePair(BinaryReader br, out int bytesRead)
+		public static unsafe KtxKeyValuePair ReadKeyValuePair(BinaryReader br, out int bytesRead)
 		{
 			var totalSize = br.ReadUInt32();
 			Span<byte> keyValueBytes = stackalloc byte[(int)totalSize];
@@ -237,7 +238,8 @@ namespace BCnEncoder.Shared.ImageFiles
 
 
 			var keySize = i;
-			var key = UTF8.GetString(keyValueBytes.Slice(0, keySize));
+			//var key = UTF8.GetString(keyValueBytes.Slice(0, keySize));
+			var key = UTF8.GetString(keyValueBytes.Slice(0, keySize).ToArray());
 
 			var valueSize = (int)(totalSize - keySize - 1);
 			var valueBytes = keyValueBytes.Slice(i + 1, valueSize);

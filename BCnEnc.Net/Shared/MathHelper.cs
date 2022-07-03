@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MathF = System.Math;
 
 namespace BCnEncoder.Shared
 {
@@ -59,7 +60,7 @@ namespace BCnEncoder.Shared
 		/// <returns></returns>
 		public static float LdExp(float arg, int exp)
 		{
-			return arg * MathF.Pow(2, exp);
+			return (float)(arg * MathF.Pow(2, exp));
 		}
 	}
 }

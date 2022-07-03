@@ -1,6 +1,6 @@
 using System;
 using BCnEncoder.Shared;
-
+using MathF = System.Math;
 namespace BCnEncoder.Encoder
 {
 	internal static class ColorChooser

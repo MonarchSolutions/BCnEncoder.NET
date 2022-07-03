@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using BCnEncoder.Encoder.Bptc;
+using MathF = System.Math;
 
 namespace BCnEncoder.Shared
 {
@@ -20,7 +21,8 @@ namespace BCnEncoder.Shared
 						p30 = p31 = p32 = p33 = fillColor;
 		}
 		
-		public Span<ColorRgba32> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+		//public Span<ColorRgba32> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+		public Span<ColorRgba32> AsSpan => Compatibility.CreateSpan(ref p00, 16);
 
 		public ColorRgba32 this[int x, int y]
 		{
@@ -60,7 +62,7 @@ namespace BCnEncoder.Shared
 			}
 
 			error /= pix1.Length;
-			error = MathF.Sqrt(error);
+			error = (float) MathF.Sqrt(error);
 
 			return (int)error;
 		}
@@ -157,7 +159,8 @@ namespace BCnEncoder.Shared
 						p30 = p31 = p32 = p33 = fillColor;
 		}
 		
-		public Span<ColorRgbFloat> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+		//public Span<ColorRgbFloat> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+		public Span<ColorRgbFloat> AsSpan => Compatibility.CreateSpan(ref p00, 16);
 
 		public ColorRgbFloat this[int x, int y]
 		{
@@ -173,7 +176,8 @@ namespace BCnEncoder.Shared
 
 		internal float CalculateError(RawBlock4X4RgbFloat other)
 		{
-			float error = 0;
+			//float error = 0;
+			double error = 0;
 			var pix1 = AsSpan;
 			var pix2 = other.AsSpan;
 			for (var i = 0; i < pix1.Length; i++)
@@ -184,7 +188,7 @@ namespace BCnEncoder.Shared
 				var re = Math.Sign(col1.r) * MathF.Log( 1 + MathF.Abs(col1.r)) - Math.Sign(col2.r) * MathF.Log( 1 + MathF.Abs(col2.r));
 				var ge = Math.Sign(col1.g) * MathF.Log( 1 + MathF.Abs(col1.g)) - Math.Sign(col2.g) * MathF.Log( 1 + MathF.Abs(col2.g));
 				var be = Math.Sign(col1.b) * MathF.Log( 1 + MathF.Abs(col1.b)) - Math.Sign(col2.b) * MathF.Log( 1 + MathF.Abs(col2.b));
-																	   
+
 				error += re * re;
 				error += ge * ge;
 				error += be * be;
@@ -192,9 +196,11 @@ namespace BCnEncoder.Shared
 			}
 
 			error /= pix1.Length * 3;
-			error = MathF.Sqrt(error);
+			//error = (float)MathF.Sqrt(error);
+			var errorFloat = (float)MathF.Sqrt(error);
 
-			return error;
+			//return error;
+			return errorFloat;
 		}
 
 		internal float CalculateYCbCrError(RawBlock4X4RgbFloat other)
@@ -244,7 +250,9 @@ namespace BCnEncoder.Shared
 		public (int, int, int) p01, p11, p21, p31;
 		public (int, int, int) p02, p12, p22, p32;
 		public (int, int, int) p03, p13, p23, p33;
-		public Span<(int, int, int)> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+
+		//public Span<(int, int, int)> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+		public Span<(int, int, int)> AsSpan => Compatibility.CreateSpan(ref p00, 16);
 
 		public (int, int, int) this[int x, int y]
 		{
@@ -279,7 +287,9 @@ namespace BCnEncoder.Shared
 		public ColorYCbCr p01, p11, p21, p31;
 		public ColorYCbCr p02, p12, p22, p32;
 		public ColorYCbCr p03, p13, p23, p33;
-		public Span<ColorYCbCr> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+
+		//public Span<ColorYCbCr> AsSpan => MemoryMarshal.CreateSpan(ref p00, 16);
+		public Span<ColorYCbCr> AsSpan => Compatibility.CreateSpan(ref p00, 16);
 
 		public ColorYCbCr this[int x, int y]
 		{
