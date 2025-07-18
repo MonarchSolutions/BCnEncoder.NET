@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -36,6 +36,7 @@ Supported formats are:
 
 2.1.0 - BC6H Support</PackageReleaseNotes>
     <LangVersion>8.0</LangVersion>
+    <RestoreSources>https://www.myget.org/F/monarchsolutions/api/v3/index.json;https://api.nuget.org/v3/index.json</RestoreSources>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -48,7 +49,7 @@ Supported formats are:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0" />
+    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0-build.125" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.10" />
     <PackageReference Include="System.Memory" Version="4.6.3" />
