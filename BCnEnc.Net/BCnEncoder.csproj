@@ -51,8 +51,7 @@ Supported formats are:
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="7.1.2" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.10" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.11" />
   </ItemGroup>
 
 </Project>
