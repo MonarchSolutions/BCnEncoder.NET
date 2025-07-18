@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net48</TargetFrameworks>
     
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -49,11 +49,10 @@ Supported formats are:
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.4.0-build.125" />
+    <PackageReference Include="CommunityToolkit.HighPerformance" Version="7.1.2" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.10" />
-    <PackageReference Include="System.Memory" Version="4.6.3" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
   </ItemGroup>
 
 </Project>

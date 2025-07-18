@@ -1,6 +1,6 @@
-/// ================ Half.cs ====================
-/// The code is free to use for any reason without any restrictions.
-/// Ladislav Lang (2009), Joannes Vermorel (2017)
+// ================ Half.cs ====================
+// The code is free to use for any reason without any restrictions.
+// Ladislav Lang (2009), Joannes Vermorel (2017)
 
 using System;
 using System.Diagnostics;

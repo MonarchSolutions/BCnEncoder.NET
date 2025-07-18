@@ -33,7 +33,7 @@ namespace BCnEncoder.Shared
 			}
 		}
 
-#if NETSTANDARD2_0
+#if NETFRAMEWORK || NETSTANDARD2_0
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Memory2D<T> AsMemory2D<T>(this Memory<T> memory, int height, int width)
 		{
